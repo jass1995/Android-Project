@@ -122,7 +122,7 @@ public class AddEmpPayrollFragment extends Fragment {
         @Override
         public void onClick(View v) {
             new DatePickerDialog(getActivity(), date,
-                    .get(Calendar.YEAR)*/2002, mCalendarInstance.get(Calendar.MONTH),
+                    2002, mCalendarInstance.get(Calendar.MONTH),
                     mCalendarInstance.get(Calendar.DAY_OF_MONTH)).show();
         }
     };
@@ -314,7 +314,7 @@ public class AddEmpPayrollFragment extends Fragment {
         }
 
         Log.e("Emp Type", "1. Part Time 2. Intern 3. Full Time " + iEmployeeType);
-
+        //Store EMPLOYEE TYPE i.e. iEmployeeType
         switch (iEmployeeType) {
             case Utility.EMP_TYPE_PART_TIME:
                 strEmpHourRate = etEmpHourRate.getText().toString();
