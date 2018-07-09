@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
     };
 
     public ProfileActivity() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -117,7 +117,6 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(ProfileActivity.this
@@ -138,18 +137,17 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
 
             UpdateBuilder<User, Integer> updateBuilder =
                     userDao.updateBuilder();
-            // update the password to be "none"
+
             updateBuilder.updateColumnValue("username", strUsername);
             updateBuilder.updateColumnValue("email", strEmail);
             updateBuilder.updateColumnValue("password", strPassword);
-            // only update the rows where password is null
+
             updateBuilder.where().eq("user_id", loginID);
             updateBuilder.update();
 
             prefsManager.savePreferenceStringValue(PrefsManager.KEY_EMAIL, strEmail);
             prefsManager.savePreferenceStringValue(PrefsManager.KEY_USERNAME, strUsername);
 
-            //SAVE DATA IN DB.
             CommonMethods.showAlertMessage(ProfileActivity.this,
                     getString(R.string.alert_update_success));
         } catch (SQLException e) {
@@ -265,7 +263,7 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                     .queryForFirst();
 
             if (userInstance != null) {
-                loginID = userInstance.getId(); //Unique user ID.
+                loginID = userInstance.getId();
                 etUsername.setText(userInstance.getUserName());
                 etEmail.setText(userInstance.getEmail());
                 etPassword.setText(userInstance.getPassword());

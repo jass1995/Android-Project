@@ -36,7 +36,7 @@ public class ListPayrollFragment extends Fragment {
     private List<EmployeePayroll> mAllPayrollList = new ArrayList<>();
 
     public ListPayrollFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -63,7 +63,6 @@ public class ListPayrollFragment extends Fragment {
         }
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
@@ -76,7 +75,6 @@ public class ListPayrollFragment extends Fragment {
             employeePayrollDao = getHelper().getEmpPayrollDao();
             mAllPayrollList.clear();
 
-            // Query the database. We need all the records so, used queryForAll()
             mAllPayrollList = employeePayrollDao.queryForAll();
             initAdapter();
         } catch (SQLException e) {

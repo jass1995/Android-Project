@@ -49,7 +49,7 @@ public class AddEmpPayrollFragment extends Fragment {
     private View mRoot;
     private EditText etEmpName;
     private EditText etEmpDOB;
-    private EditText /*etVehicleName,*/ etVehicleModel, etVehiclePlateNo;
+    private EditText  etVehicleModel, etVehiclePlateNo;
     private EditText etEmpHourRate, etEmpWorkedHours;
     private EditText etEmpISchoolName;
     private EditText etEmpFTimeSalary, etEmpFTimeBonus;
@@ -69,10 +69,10 @@ public class AddEmpPayrollFragment extends Fragment {
     private String strEmpHourRate, strEmpWorkedHours, strExtraAmt;
     private String strSchoolName;
     private String strEmpFTimeSalary, strEmpFTimeBonus;
-    private int iVehicleType = Utility.TAG_VEHICLE_CAR; //1 for car and 2 for MotorBike
-    private int iVehicleImage = 0; //Vehicle Image position
-    private int iEmployeeType = Utility.EMP_TYPE_PART_TIME; //By Default Part Time
-    //By Default Commission type in part time.
+    private int iVehicleType = Utility.TAG_VEHICLE_CAR;
+    private int iVehicleImage = 0;
+    private int iEmployeeType = Utility.EMP_TYPE_PART_TIME;
+
     private int iCommissionOrFixed = Utility.EMP_TYPE_COMMISSION;
     private boolean isVehicleAvail;
 
@@ -82,7 +82,7 @@ public class AddEmpPayrollFragment extends Fragment {
     private DatabaseHelper databaseHelper = null;
 
     public AddEmpPayrollFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -91,7 +91,6 @@ public class AddEmpPayrollFragment extends Fragment {
         mRoot = inflater.inflate(R.layout.fragment_add_emp_payroll, container, false);
         init();
 
-        //Handle click events.
         etEmpDOB.setOnClickListener(mDobListener);
         cbIsVehicle.setOnCheckedChangeListener(mVehicleChangeListener);
         rdVehicleGroup.setOnCheckedChangeListener(mVehicleTypeChangeListener);//Car or MotorBike
@@ -102,7 +101,6 @@ public class AddEmpPayrollFragment extends Fragment {
         return mRoot;
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
@@ -123,7 +121,7 @@ public class AddEmpPayrollFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            new DatePickerDialog(getActivity(), date, /*mCalendarInstance
+            new DatePickerDialog(getActivity(), date,
                     .get(Calendar.YEAR)*/2002, mCalendarInstance.get(Calendar.MONTH),
                     mCalendarInstance.get(Calendar.DAY_OF_MONTH)).show();
         }
@@ -304,7 +302,7 @@ public class AddEmpPayrollFragment extends Fragment {
         Log.e("isVehicleAvail", ": " + isVehicleAvail);
 
         isVehicleAvail = cbIsVehicle.isChecked();
-        // Check if vehicle avail, then collect values.
+
         if (isVehicleAvail) {
             strVehicleModel = etVehicleModel.getText().toString();
             strVehiclePlateNo = etVehiclePlateNo.getText().toString();
@@ -316,7 +314,7 @@ public class AddEmpPayrollFragment extends Fragment {
         }
 
         Log.e("Emp Type", "1. Part Time 2. Intern 3. Full Time " + iEmployeeType);
-        //Store EMPLOYEE TYPE i.e. iEmployeeType
+
         switch (iEmployeeType) {
             case Utility.EMP_TYPE_PART_TIME:
                 strEmpHourRate = etEmpHourRate.getText().toString();
@@ -342,7 +340,7 @@ public class AddEmpPayrollFragment extends Fragment {
         }
 
         String strErrorMessage = "";
-        //Add Payroll Validations.
+
         if (strEmpName.length() == 0) {
             strErrorMessage = getString(R.string.error_empty_ename);
         } else if (strEmpDOB.length() == 0) {
@@ -419,7 +417,7 @@ public class AddEmpPayrollFragment extends Fragment {
             e.printStackTrace();
         }
 
-        // Then, set all the values from user input
+
         employeePayrollInstance.empName = strEmpName;
         employeePayrollInstance.empDOB = strEmpDOB;
         employeePayrollInstance.havingVehicle = isVehicleAvail;
@@ -452,7 +450,7 @@ public class AddEmpPayrollFragment extends Fragment {
         llVehicleInfo = mRoot.findViewById(R.id.llVehicleInfo);
         rdVehicleGroup = mRoot.findViewById(R.id.rdVehicleGroup);
         spVehicleName = mRoot.findViewById(R.id.spVehicleName);
-        //etVehicleName = mRoot.findViewById(R.id.etVehicleName);
+
         etVehicleModel = mRoot.findViewById(R.id.etVehicleModel);
         etVehiclePlateNo = mRoot.findViewById(R.id.etVehiclePlateNo);
         ivVehicleImg = mRoot.findViewById(R.id.ivVehicleImg);
@@ -511,7 +509,7 @@ public class AddEmpPayrollFragment extends Fragment {
 
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "MM/dd/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         etEmpDOB.setText(sdf.format(mCalendarInstance.getTime()));
     }

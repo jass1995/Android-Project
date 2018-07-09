@@ -20,7 +20,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llLogout, llProfile, llListEmployee, llAddEmployee;
 
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

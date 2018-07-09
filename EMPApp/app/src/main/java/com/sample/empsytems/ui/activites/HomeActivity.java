@@ -32,10 +32,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tvUserName, tvUserEmail;
     private Toolbar toolbar;
 
-    // index to identify current nav menu item
     public static int navItemIndex = 0;
 
-    // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_ADD_EMP = "add_emp";
     private static final String TAG_VIEW_ALL_EMP = "view_all_emp";
@@ -43,10 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG_HELP = "help";
     public static String CURRENT_TAG = TAG_HOME;
 
-    // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
 
-    // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
     private PrefsManager prefsManager;
@@ -132,10 +128,6 @@ public class HomeActivity extends AppCompatActivity {
         setUpNavigationView();
     }
 
-    /***
-     * Returns respected fragment that user
-     * selected from navigation menu
-     */
     private void loadHomeFragment() {
         selectNavMenu();
         setToolbarTitle();
@@ -157,7 +149,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
-        // If mPendingRunnable is not null, then add to the message queue
         if (mPendingRunnable != null) {
             mHandler.post(mPendingRunnable);
         }
@@ -249,7 +240,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -261,7 +252,7 @@ public class HomeActivity extends AppCompatActivity {
     private void showHelpAlertDialog() {
         final Dialog openDialog = new Dialog(HomeActivity.this);
         openDialog.setContentView(R.layout.alert_help_dialog);
-        //openDialog.seT
+
         TextView tvThanksBtn = openDialog.findViewById(R.id.tvThanksBtn);
 
         tvThanksBtn.setOnClickListener(new View.OnClickListener() {

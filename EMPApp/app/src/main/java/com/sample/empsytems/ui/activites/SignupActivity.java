@@ -31,7 +31,6 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         init();
 
-        //Handle click events here
         btSignup.setOnClickListener(mSignuListener);
         etPassword.setOnEditorActionListener(mDoneActionListener);
     }

@@ -114,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         btLogin = findViewById(R.id.btLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
 
-        //Pre-filled data
         etEmail.setText("user@employee.com");
         etPassword.setText("s3cr3t");
         etEmail.setSelection(etEmail.length());
@@ -125,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
                 false);
 
         if (!isEnterDefUser) {
-            //Saving a default static type user in DB.
             saveUserInDatabase();
         }
     }
