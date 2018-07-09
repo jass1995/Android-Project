@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeMaterial" parent="MyMaterialTheme.Base">
+        <item name="android:itemBackground">#F1F1F0</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/color107EFD</item>
+        <item name="colorPrimaryDark">@color/color107EFD</item>
+        <item name="colorAccent">@color/color107EFD</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/ic_home"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_add_emp"
+            android:icon="@mipmap/ic_add_emp"
+            android:title="@string/nav_add_emp_payroll" />
+        <item
+            android:id="@+id/nav_list_payroll"
+            android:icon="@mipmap/ic_list_emp"
+            android:title="@string/nav_list_payroll" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@mipmap/ic_profile"
+            android:title="@string/nav_profile" />
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@mipmap/ic_help"
+            android:title="@string/nav_help" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_logout"
+            android:title="@string/nav_logout" />
+    </group>
+
+</menu>

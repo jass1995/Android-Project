@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <!-- ALL VIEWS WILL BE IN SCROLL -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- EMPLOYEE NAME -->
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/etEmpName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/color107EFD"
+                        android:hint="@string/edit_hint_emp_name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        tools:targetApi="lollipop" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- DOB -->
+
+                <EditText
+                    android:id="@+id/etEmpDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:editable="false"
+                    android:hint="@string/edit_hint_emp_dob"
+                    android:inputType="text" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
+
+                <!-- VEHICLE SECTION -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/text_vehicle_info"
+                    android:textColor="@color/color107EFD"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- VEHICLE AVAIL? -->
+
+                <CheckBox
+                    android:id="@+id/cbIsVehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/cb_label_vehicle_avail" />
+
+                <!-- VISIBLE IF VEHICLE IS AVAILABLE OTHERWISE HIDE -->
+
+                <LinearLayout
+                    android:id="@+id/llVehicleInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RadioGroup
+                        android:id="@+id/rdVehicleGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbCar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:checked="true"
+                            android:text="@string/rb_label_car" />
+
+                        <RadioButton
+                            android:id="@+id/rbMotorCycle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:text="@string/rb_label_bike" />
+
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!-- <android.support.design.widget.TextInputLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="80">
+
+                                 <android.support.design.widget.TextInputEditText
+                                     android:id="@+id/etVehicleName"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:backgroundTint="@color/color107EFD"
+                                     android:hint="@string/edit_hint_vehicle_name"
+                                     android:inputType="text"
+                                     android:maxLines="1"
+                                     android:padding="10dp"
+                                     android:singleLine="true"
+                                     tools:targetApi="lollipop" />
+
+                             </android.support.design.widget.TextInputLayout>-->
+
+                            <Spinner
+                                android:id="@+id/spVehicleName"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="80"
+                                android:prompt="@string/edit_hint_vehicle_name" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="20"
+                                android:gravity="center">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/ivVehicleImg"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/ic_person_large"
+                                    app:civ_border_color="@android:color/black"
+                                    app:civ_border_width="1dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etVehicleModel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/text_vehicle_model_number"
+                                android:inputType="number"
+                                android:maxLength="4"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etVehiclePlateNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/text_vehicle_plate_number"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
+
+                <!-- EMPLOYEE SECTION -->
+
+                <TextView
+                    android:id="@+id/tvVehicleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/text_label_emp_info"
+                    android:textColor="@color/color107EFD"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rdEmpGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbPartTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:checked="true"
+                        android:text="@string/rb_label_part_time" />
+
+                    <RadioButton
+                        android:id="@+id/rbIntern"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:text="@string/rb_label_intern" />
+
+                    <RadioButton
+                        android:id="@+id/rbFullTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="34"
+                        android:text="@string/rb_label_full_time" />
+
+                </RadioGroup>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <!-- PART TIME -->
+
+                    <LinearLayout
+                        android:id="@+id/llPartTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmpHourRate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_hour_rate"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmpWorkedHours"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_work_hours"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:id="@+id/rdCommissionGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbCommissionBased"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="50"
+                                android:checked="true"
+                                android:text="@string/rb_label_commission_base" />
+
+                            <RadioButton
+                                android:id="@+id/rbFixedBased"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="50"
+                                android:text="@string/rb_label_fixed_base" />
+
+                        </RadioGroup>
+
+                        <!-- THIS INPUT WILL BE USE FOR COMMISSION AMOUNT AND FIXED AMOUNT -->
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputLayoutExtraAmt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etExtraAmt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_commission_amt"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- INTERN -->
+
+                    <LinearLayout
+                        android:id="@+id/llIntern"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmpISchoolName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_school_name"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- FULL TIME -->
+
+                    <LinearLayout
+                        android:id="@+id/llFullTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmpFTimeSalary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_salary"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmpFTimeBonus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/color107EFD"
+                                android:hint="@string/edit_hint_bonus"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                tools:targetApi="lollipop" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- SAVE BUTTON -->
+
+                <Button
+                    android:id="@+id/btSavePayroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/ic_btn_shape_e75200"
+                    android:text="@string/btn_save_payroll"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

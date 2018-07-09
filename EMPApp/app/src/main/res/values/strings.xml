@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name">Emp Payroll App</string>
+
+    <!-- EDIT TEXT COLLECTIONS -->
+
+    <string name="edit_text_uname">Username</string>
+    <string name="edit_text_email">Email</string>
+    <string name="edit_text_password">Password</string>
+    <string name="edit_text_cpassword">Confirm Password</string>
+    <string name="edit_hint_emp_name">Enter Name</string>
+    <string name="edit_hint_emp_dob">Enter DOB (MM/DD/YYYY)</string>
+    <string name="edit_hint_vehicle_name">Vehicle Name</string>
+    <string name="edit_hint_vehicle_model">Vehicle Model</string>
+    <string name="edit_hint_vehicle_plateno">Vehicle Plate Number</string>
+    <string name="edit_hint_hour_rate">Enter Hour Rate</string>
+    <string name="edit_hint_work_hours">Enter Worked Hours</string>
+    <string name="edit_hint_commission_amt">Enter Commission Rate</string>
+    <string name="edit_hint_fixed_amt">Enter Fixed Amount</string>
+    <string name="edit_hint_school_name">Enter School Name</string>
+    <string name="edit_hint_salary">Employee Salary</string>
+    <string name="edit_hint_bonus">Employee Bonus</string>
+
+    <!-- TEXT LABELS COLLECTIONS -->
+
+    <string name="text_emp_system_name">Employee\n Payroll System</string>
+    <string name="text_label_loading">Loading&#8230;</string>
+    <string name="text_remember_me">Remember Me?</string>
+    <string name="text_no_acc_yet">Not account yet? Create one</string>
+    <string name="text_label_version">Version: 1.0 (1)</string>
+    <string name="text_label_help">HELP</string>
+    <string name="text_label_mob">Mob:</string>
+    <string name="text_label_email">Contact Us:</string>
+    <string name="text_label_ok_thanks">Ok Thanks</string>
+    <string name="text_vehicle_info">Vehicle Info</string>
+    <string name="text_vehicle_brand">Brand Name:</string>
+    <string name="text_vehicle_model">Model No. :</string>
+    <string name="text_vehicle_plate_no">Plate No. :</string>
+    <string name="text_vehicle_model_number">Vehicle Model (YYYY)</string>
+    <string name="text_vehicle_plate_number">Plate Number</string>
+    <string name="text_vehicle_insured">Vehicle Insurance:</string>
+    <string name="text_label_emp_info">Employee Info</string>
+    <string name="text_label_emp_role">Employee Role:</string>
+    <string name="text_label_emp_salary">Employee Salary:</string>
+    <string name="text_label_emp_bonus">Employee Bonus:</string>
+    <string name="text_msg_no_data">No Data Found</string>
+    <string name="text_msg_add_emp">Please Add New Employee Payroll</string>
+    <string name="text_label_has_vehicle">Has Vehicle?</string>
+    <string name="text_label_emp_type">Employee Category</string>
+    <string name="text_label_yes">Yes</string>
+    <string name="text_label_no">No</string>
+    <string name="text_label_ename">Employee Name</string>
+    <string name="text_label_edob">Employee DOB</string>
+    <string name="text_label_vtype">Type</string>
+    <string name="text_label_vname">Name</string>
+    <string name="text_label_vmodel">Model</string>
+    <string name="text_label_vpno">Plate Number</string>
+    <string name="text_label_tearnings">Total Earnings</string>
+    <string name="text_label_sname">School Name</string>
+    <string name="text_label_hrate">Hour Rate</string>
+    <string name="text_label_thrs">Total Hours</string>
+    <string name="text_label_wtype">Work Type</string>
+    <string name="text_label_comm_rate">Commission Rate</string>
+    <string name="text_label_fixed_rate">Fixed Rate</string>
+
+    <!-- BUTTON LABELS COLLECTIONS -->
+    <string name="btn_text_login">Login</string>
+    <string name="btn_text_signup">Sign Up</string>
+    <string name="btn_save_payroll">Save Payroll</string>
+    <string name="btn_text_update_profile">Update Profile</string>
+
+    <!-- OTHER LABELS -->
+    <string name="toolbar_tile_signup">Create your account</string>
+    <string name="cb_label_vehicle_avail">Is Vehicle Available?</string>
+    <string name="rb_label_car">Car</string>
+    <string name="rb_label_bike">Motor Cycle</string>
+    <string name="rb_label_part_time">Part Time</string>
+    <string name="rb_label_intern">Intern</string>
+    <string name="rb_label_full_time">Full Time</string>
+    <string name="rb_label_commission_base">Commission Based</string>
+    <string name="rb_label_fixed_base">Fixed Based</string>
+    <string name="success_save_payroll">Congratulations!!! New payroll employee added successfully.</string>
+
+    <!-- COMMON ALERT MESSAGES -->
+    <string name="error_email_pass_required">Please enter Email and Password.</string>
+    <string name="error_invalid_email">Please enter valid email.</string>
+    <string name="error_empty_ename">Please enter employee name first.</string>
+    <string name="error_empty_edob">Date of birth is missing.</string>
+    <string name="error_empty_vmodel">Please enter vehicle model.</string>
+    <string name="error_empty_vplateno">Please enter plate number of your vehicle.</string>
+    <string name="error_all_required">All fields are required.</string>
+    <string name="error_invalid_password">Password and confirm password should match.</string>
+    <string name="error_invalid_credentials">Invalid email or password. Please try again or register yourself.</string>
+    <string name="error_unable_to_load">Sorry, unable to load data.</string>
+    <string name="alert_update_success">Update profile successfully.</string>
+
+    <!-- NAV DRAWER [START] -->
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_add_emp_payroll">Add Employee Paroll</string>
+    <string name="nav_list_payroll">List Payroll</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_logout">Logout</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Add Employee Payroll</item>
+        <item>All Employee Payroll</item>
+        <item>Profile</item>
+        <item>Help</item>
+        <item>Logout</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- NAV DRAWER [END] -->
+
+</resources>
