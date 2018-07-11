@@ -14,12 +14,11 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import com.sample.empsytems.R;
 import com.sample.empsytems.database.DatabaseHelper;
-import com.sample.empsytems.models.EmployeePayroll;
 import com.sample.empsytems.models.signup.User;
 import com.sample.empsytems.ui.interfaces.onAlertCallbackListener;
 import com.sample.empsytems.utils.CommonMethods;
 import com.sample.empsytems.utils.PrefsManager;
-import com.sample.empsytems.utils.Utility;
+import com.sample.empsytems.utils.Constants;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -75,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(LoginActivity.this
@@ -114,18 +112,29 @@ public class LoginActivity extends AppCompatActivity {
         btLogin = findViewById(R.id.btLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
 
-        etEmail.setText("user@employee.com");
-        etPassword.setText("s3cr3t");
+        prefsManager = new PrefsManager(LoginActivity.this);
+        strEmail = prefsManager.loadPreferenceStringValue(PrefsManager.KEY_EMAIL, Constants.DEFAULT_EMAIL);
+        strPassword = prefsManager.loadPreferenceStringValue(PrefsManager.KEY_PASSWORD, Constants.DEFAULT_PASSWORD);
+
+        try {
+            userDao = getHelper().getUserDao();
+            List<User> userList = userDao.queryForAll();
+
+            if(userList.size() ==0){
+
+                saveUserInDatabase();
+            }
+        }catch (Exception exp){
+            exp.printStackTrace();
+        }
+
+        etEmail.setText(strEmail);
+        etPassword.setText(strPassword);
         etEmail.setSelection(etEmail.length());
 
-        prefsManager = new PrefsManager(LoginActivity.this);
         isEnterDefUser = prefsManager.loadPrefBoolValue(
                 PrefsManager.KEY_ENTER_DEFAULT_USER,
                 false);
-
-        if (!isEnterDefUser) {
-            saveUserInDatabase();
-        }
     }
 
     private void checkUserIfExist() {
@@ -174,9 +183,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void saveUserInDatabase() {
         try {
-            User userInstance = new User("TestUser",
-                    etEmail.getText().toString().trim(),
-                    etPassword.getText().toString().trim());
+            User userInstance = new User(
+                    prefsManager.loadPreferenceStringValue(PrefsManager.KEY_USERNAME, Constants.DEFAULT_USERNAME),
+                    prefsManager.loadPreferenceStringValue(PrefsManager.KEY_EMAIL, Constants.DEFAULT_EMAIL),
+                    prefsManager.loadPreferenceStringValue(PrefsManager.KEY_PASSWORD, Constants.DEFAULT_PASSWORD));
             final Dao<User, Integer> userDao = getHelper().getUserDao();
             int resultCode = userDao.create(userInstance);
 

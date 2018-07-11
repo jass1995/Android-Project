@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/edit_hint_emp_dob"
                     android:inputType="text" />
 

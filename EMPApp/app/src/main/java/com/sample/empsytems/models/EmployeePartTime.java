@@ -16,7 +16,7 @@ public class EmployeePartTime {
     public String empWorkedHours;
 
     @DatabaseField(columnName = "emp_work_type")
-    public int empWorkType; //1. Commission based, 2. Fixed
+    public int empWorkType;
 
     @DatabaseField(columnName = "emp_extra_amt")
     public String empExtraAmt;

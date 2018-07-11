@@ -145,8 +145,9 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
             updateBuilder.where().eq("user_id", loginID);
             updateBuilder.update();
 
-            prefsManager.savePreferenceStringValue(PrefsManager.KEY_EMAIL, strEmail);
             prefsManager.savePreferenceStringValue(PrefsManager.KEY_USERNAME, strUsername);
+            prefsManager.savePreferenceStringValue(PrefsManager.KEY_EMAIL, strEmail);
+            prefsManager.savePreferenceStringValue(PrefsManager.KEY_PASSWORD, strPassword);
 
             CommonMethods.showAlertMessage(ProfileActivity.this,
                     getString(R.string.alert_update_success));
@@ -263,7 +264,7 @@ public class ProfileActivity extends AppCompatActivity implements OnMapReadyCall
                     .queryForFirst();
 
             if (userInstance != null) {
-                loginID = userInstance.getId();
+                loginID = userInstance.getId(); //Unique user ID.
                 etUsername.setText(userInstance.getUserName());
                 etEmail.setText(userInstance.getEmail());
                 etPassword.setText(userInstance.getPassword());

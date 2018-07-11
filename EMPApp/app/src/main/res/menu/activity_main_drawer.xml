@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_add_emp"
             android:icon="@mipmap/ic_add_emp"
-            android:title="@string/nav_add_emp_payroll" />
+            android:title="Add Employee Payroll"/>
         <item
             android:id="@+id/nav_list_payroll"
             android:icon="@mipmap/ic_list_emp"

@@ -19,21 +19,21 @@ public class EmployeePayroll {
     public boolean havingVehicle;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    public VehicleInfo vehicleInfo;
+    public Vehicle vehicle;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     public Employee employee;
 
-    public EmployeePayroll(int id, String empName, String empDOB, boolean havingVehicle, VehicleInfo vehicleInfo) {
+    public EmployeePayroll(int id, String empName, String empDOB, boolean havingVehicle, Vehicle vehicle) {
         this.id = id;
         this.empName = empName;
         this.empDOB = empDOB;
         this.havingVehicle = havingVehicle;
-        this.vehicleInfo = vehicleInfo;
+        this.vehicle = vehicle;
     }
 
     public EmployeePayroll() {
-        this.vehicleInfo = new VehicleInfo();
+        this.vehicle = new Vehicle();
     }
 
     public int getId() {
@@ -84,12 +84,12 @@ public class EmployeePayroll {
         this.havingVehicle = havingVehicle;
     }
 
-    public VehicleInfo getVehicleInfo() {
-        return vehicleInfo;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleInfo(VehicleInfo vehicleInfo) {
-        this.vehicleInfo = vehicleInfo;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Employee getEmployee() {

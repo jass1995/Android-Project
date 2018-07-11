@@ -92,6 +92,7 @@
     <string name="error_invalid_credentials">Invalid email or password. Please try again or register yourself.</string>
     <string name="error_unable_to_load">Sorry, unable to load data.</string>
     <string name="alert_update_success">Update profile successfully.</string>
+    <string name="alert_register_success">Congratulations!!! Registered Successfully.</string>
 
     <!-- NAV DRAWER [START] -->
 

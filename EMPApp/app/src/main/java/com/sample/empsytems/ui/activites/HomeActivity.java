@@ -96,7 +96,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(HomeActivity.this
@@ -127,6 +126,7 @@ public class HomeActivity extends AppCompatActivity {
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
         setUpNavigationView();
     }
+
 
     private void loadHomeFragment() {
         selectNavMenu();
@@ -217,7 +217,7 @@ public class HomeActivity extends AppCompatActivity {
                         navItemIndex = 0;
                 }
 
-                //Checking if the item is in checked state or not, if not make it in checked state
+
                 if (menuItem.isChecked()) {
                     menuItem.setChecked(false);
                 } else {
@@ -234,7 +234,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+
                 super.onDrawerClosed(drawerView);
             }
 
@@ -287,7 +287,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void performLogout() {
-        getHelper().clearDatabase();
+
         new PrefsManager(HomeActivity.this).clearAutoPreference();
         CommonMethods.startActivity(HomeActivity.this,
                 LoginActivity.class,

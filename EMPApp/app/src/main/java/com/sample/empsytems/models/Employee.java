@@ -10,9 +10,8 @@ public class Employee {
     private int id;
 
     @DatabaseField(columnName = "employee_cat")
-    public int employeeType; //Part Time, Intern or Full Time.
+    public int employeeType;
 
-    ////////////////   PART TIME  /////////////////////////
 
     @DatabaseField(columnName = "emp_hour_rate")
     public String empHourRate;
@@ -21,18 +20,15 @@ public class Employee {
     public String empWorkedHours;
 
     @DatabaseField(columnName = "emp_work_type")
-    public int empWorkType; //1. Commission based, 2. Fixed
+    public int empWorkType;
 
     @DatabaseField(columnName = "emp_extra_amt")
     public String empExtraAmt;
 
 
-    ////////////////   INTERN  /////////////////////////
-
     @DatabaseField(columnName = "emp_school_name")
     public String empSchoolName;
 
-    ////////////////   FULL TIME  /////////////////////////
 
     @DatabaseField(columnName = "emp_salary")
     public String empSalary;

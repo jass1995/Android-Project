@@ -3,7 +3,6 @@ package com.sample.empsytems.ui.activites;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,11 +14,10 @@ import com.sample.empsytems.R;
 import com.sample.empsytems.database.DatabaseHelper;
 import com.sample.empsytems.models.Employee;
 import com.sample.empsytems.models.EmployeePayroll;
-import com.sample.empsytems.models.VehicleInfo;
+import com.sample.empsytems.models.Vehicle;
 import com.sample.empsytems.ui.interfaces.onAlertCallbackListener;
 import com.sample.empsytems.utils.CommonMethods;
-import com.sample.empsytems.utils.PrefsManager;
-import com.sample.empsytems.utils.Utility;
+import com.sample.empsytems.utils.Constants;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -135,17 +133,17 @@ public class ViewEmpDetailActivity extends AppCompatActivity {
             llVehicleInfo.setVisibility(View.VISIBLE);
             tvNoVehicle.setVisibility(View.GONE);
 
-            VehicleInfo vehicleInfo = employeePayroll.getVehicleInfo();
-            int vType = vehicleInfo.getVehicleType();
-            if (vType == Utility.TAG_VEHICLE_CAR) {
+            Vehicle vehicle = employeePayroll.getVehicle();
+            int vType = vehicle.getVehicleType();
+            if (vType == Constants.TAG_VEHICLE_CAR) {
                 tvVehicleType.setText(getString(R.string.rb_label_car));
             } else {
                 tvVehicleType.setText(getString(R.string.rb_label_bike));
             }
 
-            tvVehicleName.setText(vehicleInfo.vehicleName);
-            tvVehicleModel.setText(vehicleInfo.vehicleModel);
-            tvVehiclePNo.setText(vehicleInfo.vehiclePlateNo);
+            tvVehicleName.setText(vehicle.vehicleName);
+            tvVehicleModel.setText(vehicle.vehicleModel);
+            tvVehiclePNo.setText(vehicle.vehiclePlateNo);
         } else {
             tvNoVehicle.setVisibility(View.VISIBLE);
             llVehicleInfo.setVisibility(View.GONE);
@@ -157,7 +155,7 @@ public class ViewEmpDetailActivity extends AppCompatActivity {
         int eType = employee.getEmployeeType();
 
         switch (eType) {
-            case Utility.EMP_TYPE_PART_TIME:
+            case Constants.EMP_TYPE_PART_TIME:
                 llPartTime.setVisibility(View.VISIBLE);
                 tvEmpCat.setText(getString(R.string.rb_label_part_time));
                 float hourRate = Float.parseFloat(employee.empHourRate);
@@ -166,35 +164,35 @@ public class ViewEmpDetailActivity extends AppCompatActivity {
                 float extraAmt = Float.parseFloat(employee.empExtraAmt);
                 float fTotalEarnings = ((hourRate * totalHours) + extraAmt);
 
-                tvHourRate.setText((Utility.CURRENCY_SYMBOL + hourRate));
+                tvHourRate.setText((Constants.CURRENCY_SYMBOL + hourRate));
                 tvTotalHours.setText(employee.empWorkedHours);
 
-                if (iWorkType == Utility.EMP_TYPE_COMMISSION) {
+                if (iWorkType == Constants.EMP_TYPE_COMMISSION) {
                     tvWorkType.setText(getString(R.string.rb_label_commission_base));
                     tvWorkCatLabel.setText(getString(R.string.text_label_comm_rate));
                 } else {
                     tvWorkType.setText(getString(R.string.rb_label_fixed_base));
                     tvWorkCatLabel.setText(getString(R.string.text_label_fixed_rate));
                 }
-                //Fixed or Commission rate entered in empExtraAmt key in database.
-                tvExtraAmt.setText((Utility.CURRENCY_SYMBOL + extraAmt));
-                tvPartTimeTEarning.setText((Utility.CURRENCY_SYMBOL + fTotalEarnings));
+
+                tvExtraAmt.setText((Constants.CURRENCY_SYMBOL + extraAmt));
+                tvPartTimeTEarning.setText((Constants.CURRENCY_SYMBOL + fTotalEarnings));
                 break;
 
-            case Utility.EMP_TYPE_INTERN:
+            case Constants.EMP_TYPE_INTERN:
                 llIntern.setVisibility(View.VISIBLE);
                 tvEmpCat.setText(getString(R.string.rb_label_intern));
                 tvSchoolName.setText(employee.empSchoolName);
                 break;
 
-            case Utility.EMP_TYPE_FULL_TIME:
+            case Constants.EMP_TYPE_FULL_TIME:
                 llFullTime.setVisibility(View.VISIBLE);
                 float salary = Float.parseFloat(employee.empSalary);
                 float bonus = Float.parseFloat(employee.empBonus);
                 tvEmpCat.setText(getString(R.string.rb_label_full_time));
-                tvEmpSalary.setText((Utility.CURRENCY_SYMBOL + salary));
-                tvEmpBonus.setText((Utility.CURRENCY_SYMBOL + bonus));
-                tvTotalEarnings.setText((Utility.CURRENCY_SYMBOL + (salary + bonus)));
+                tvEmpSalary.setText((Constants.CURRENCY_SYMBOL + salary));
+                tvEmpBonus.setText((Constants.CURRENCY_SYMBOL + bonus));
+                tvTotalEarnings.setText((Constants.CURRENCY_SYMBOL + (salary + bonus)));
                 break;
         }
     }

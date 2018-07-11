@@ -9,26 +9,20 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.sample.empsytems.models.Employee;
-import com.sample.empsytems.models.EmployeeFullTime;
-import com.sample.empsytems.models.EmployeeIntern;
-import com.sample.empsytems.models.EmployeePartTime;
 import com.sample.empsytems.models.EmployeePayroll;
-import com.sample.empsytems.models.VehicleInfo;
+import com.sample.empsytems.models.Vehicle;
 import com.sample.empsytems.models.signup.User;
 
 import java.sql.SQLException;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    /************************************************
-     * Suggested Copy/Paste code. Everything from here to the done block.
-     ************************************************/
 
     private static final String DATABASE_NAME = "emp_payroll_system.db";
     private static final int DATABASE_VERSION = 1;
 
     private Dao<EmployeePayroll, Integer> employeePayroll;
-    private Dao<VehicleInfo, Integer> vehicleInfoDao;
+    private Dao<Vehicle, Integer> vehicleInfoDao;
     private Dao<Employee, Integer> employeeDao;
     private Dao<User, Integer> userDao;
 
@@ -36,15 +30,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    /************************************************
-     * Suggested Copy/Paste Done
-     ************************************************/
 
     @Override
     public void onCreate(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, EmployeePayroll.class);
-            TableUtils.createTable(connectionSource, VehicleInfo.class);
+            TableUtils.createTable(connectionSource, Vehicle.class);
             TableUtils.createTable(connectionSource, Employee.class);
             TableUtils.createTable(connectionSource, User.class);
 
@@ -57,12 +48,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
         try {
 
-            // In case of change in database of next version of application, please increase the value of DATABASE_VERSION variable, then this method will be invoked
-            //automatically. Developer needs to handle the upgrade logic here, i.e. create a new table or a new column to an existing table, take the backups of the
-            // existing database etc.
+
 
             TableUtils.dropTable(connectionSource, EmployeePayroll.class, true);
-            TableUtils.dropTable(connectionSource, VehicleInfo.class, true);
+            TableUtils.dropTable(connectionSource, Vehicle.class, true);
             TableUtils.dropTable(connectionSource, Employee.class, true);
             TableUtils.dropTable(connectionSource, User.class, true);
 
@@ -74,8 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    // Create the getDao methods of all database tables to access those from android code.
-    // Insert, delete, read, update everything will be happened through DAOs
+
 
     public Dao<EmployeePayroll, Integer> getEmpPayrollDao() throws SQLException {
         if (employeePayroll == null) {
@@ -84,9 +72,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return employeePayroll;
     }
 
-    public Dao<VehicleInfo, Integer> getVehicleInfoDao() throws SQLException {
+    public Dao<Vehicle, Integer> getVehicleInfoDao() throws SQLException {
         if (vehicleInfoDao == null) {
-            vehicleInfoDao = getDao(VehicleInfo.class);
+            vehicleInfoDao = getDao(Vehicle.class);
         }
         return vehicleInfoDao;
     }
@@ -108,7 +96,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void clearDatabase(){
         try {
             TableUtils.clearTable(getConnectionSource(), EmployeePayroll.class);
-            TableUtils.clearTable(getConnectionSource(), VehicleInfo.class);
+            TableUtils.clearTable(getConnectionSource(), Vehicle.class);
             TableUtils.clearTable(getConnectionSource(), Employee.class);
             TableUtils.clearTable(getConnectionSource(), User.class);
         } catch (SQLException e) {

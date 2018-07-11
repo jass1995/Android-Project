@@ -60,7 +60,7 @@ public class CommonMethods {
     }
 
     public static int getVehicleIconByPosition(int iVehicleType, int position) {
-        if (iVehicleType == Utility.TAG_VEHICLE_CAR) {
+        if (iVehicleType == Constants.TAG_VEHICLE_CAR) {
             switch (position) {
                 case 0:
                     return R.drawable.ic_car_audi;
@@ -89,7 +89,7 @@ public class CommonMethods {
                 case 8:
                     return R.drawable.ic_car_mini;
             }
-        } else if (iVehicleType == Utility.TAG_VEHICLE_MOTORBIKE) {
+        } else if (iVehicleType == Constants.TAG_VEHICLE_MOTORBIKE) {
             switch (position) {
                 case 0:
                     return R.drawable.ic_bike_honda;

@@ -4,13 +4,13 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "emp_vehicle")
-public class VehicleInfo {
+public class Vehicle {
 
     @DatabaseField(columnName = "vehicle_id", generatedId = true)
     private int id;
 
     @DatabaseField(columnName = "vehicle_type")
-    public int vehicleType; //Car or Bike
+    public int vehicleType;
 
     @DatabaseField(columnName = "vehicle_name")
     public String vehicleName;

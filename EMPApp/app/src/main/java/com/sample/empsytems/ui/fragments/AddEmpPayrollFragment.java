@@ -25,15 +25,11 @@ import com.j256.ormlite.dao.Dao;
 import com.sample.empsytems.R;
 import com.sample.empsytems.database.DatabaseHelper;
 import com.sample.empsytems.models.Employee;
-import com.sample.empsytems.models.EmployeeFullTime;
-import com.sample.empsytems.models.EmployeeIntern;
-import com.sample.empsytems.models.EmployeePartTime;
 import com.sample.empsytems.models.EmployeePayroll;
-import com.sample.empsytems.models.VehicleInfo;
-import com.sample.empsytems.ui.activites.HomeActivity;
+import com.sample.empsytems.models.Vehicle;
 import com.sample.empsytems.ui.interfaces.onAlertCallbackListener;
 import com.sample.empsytems.utils.CommonMethods;
-import com.sample.empsytems.utils.Utility;
+import com.sample.empsytems.utils.Constants;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -49,7 +45,7 @@ public class AddEmpPayrollFragment extends Fragment {
     private View mRoot;
     private EditText etEmpName;
     private EditText etEmpDOB;
-    private EditText  etVehicleModel, etVehiclePlateNo;
+    private EditText /*etVehicleName,*/ etVehicleModel, etVehiclePlateNo;
     private EditText etEmpHourRate, etEmpWorkedHours;
     private EditText etEmpISchoolName;
     private EditText etEmpFTimeSalary, etEmpFTimeBonus;
@@ -69,11 +65,11 @@ public class AddEmpPayrollFragment extends Fragment {
     private String strEmpHourRate, strEmpWorkedHours, strExtraAmt;
     private String strSchoolName;
     private String strEmpFTimeSalary, strEmpFTimeBonus;
-    private int iVehicleType = Utility.TAG_VEHICLE_CAR;
+    private int iVehicleType = Constants.TAG_VEHICLE_CAR;
     private int iVehicleImage = 0;
-    private int iEmployeeType = Utility.EMP_TYPE_PART_TIME;
+    private int iEmployeeType = Constants.EMP_TYPE_PART_TIME;
 
-    private int iCommissionOrFixed = Utility.EMP_TYPE_COMMISSION;
+    private int iCommissionOrFixed = Constants.EMP_TYPE_COMMISSION;
     private boolean isVehicleAvail;
 
     List<String> mVehicleCategoriesList = new ArrayList<String>();
@@ -121,8 +117,8 @@ public class AddEmpPayrollFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            new DatePickerDialog(getActivity(), date,
-                    2002, mCalendarInstance.get(Calendar.MONTH),
+            new DatePickerDialog(getActivity(), date, /*mCalendarInstance
+                    .get(Calendar.YEAR)*/2002, mCalendarInstance.get(Calendar.MONTH),
                     mCalendarInstance.get(Calendar.DAY_OF_MONTH)).show();
         }
     };
@@ -144,10 +140,10 @@ public class AddEmpPayrollFragment extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if (isChecked) {
-                updateVehicleIcon(Utility.TAG_VEHICLE_CAR, 0);
+                updateVehicleIcon(Constants.TAG_VEHICLE_CAR, 0);
                 llVehicleInfo.setVisibility(View.VISIBLE);
             } else {
-                updateVehicleIcon(Utility.TAG_VEHICLE_MOTORBIKE, 0);
+                updateVehicleIcon(Constants.TAG_VEHICLE_MOTORBIKE, 0);
                 llVehicleInfo.setVisibility(View.GONE);
             }
         }
@@ -167,21 +163,21 @@ public class AddEmpPayrollFragment extends Fragment {
                     llPartTime.setVisibility(View.VISIBLE);
                     llIntern.setVisibility(View.GONE);
                     llFullTime.setVisibility(View.GONE);
-                    iEmployeeType = Utility.EMP_TYPE_PART_TIME;
+                    iEmployeeType = Constants.EMP_TYPE_PART_TIME;
                     break;
 
                 case R.id.rbIntern:
                     llPartTime.setVisibility(View.GONE);
                     llIntern.setVisibility(View.VISIBLE);
                     llFullTime.setVisibility(View.GONE);
-                    iEmployeeType = Utility.EMP_TYPE_INTERN;
+                    iEmployeeType = Constants.EMP_TYPE_INTERN;
                     break;
 
                 case R.id.rbFullTime:
                     llPartTime.setVisibility(View.GONE);
                     llIntern.setVisibility(View.GONE);
                     llFullTime.setVisibility(View.VISIBLE);
-                    iEmployeeType = Utility.EMP_TYPE_FULL_TIME;
+                    iEmployeeType = Constants.EMP_TYPE_FULL_TIME;
                     break;
             }
         }
@@ -191,12 +187,12 @@ public class AddEmpPayrollFragment extends Fragment {
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             switch (checkedId) {
                 case R.id.rbCommissionBased:
-                    iCommissionOrFixed = Utility.EMP_TYPE_COMMISSION;
+                    iCommissionOrFixed = Constants.EMP_TYPE_COMMISSION;
                     textInputLayoutExtraAmt.setHint(getString(R.string.edit_hint_commission_amt));
                     break;
 
                 case R.id.rbFixedBased:
-                    iCommissionOrFixed = Utility.EMP_TYPE_FIXED;
+                    iCommissionOrFixed = Constants.EMP_TYPE_FIXED;
                     textInputLayoutExtraAmt.setHint(getString(R.string.edit_hint_fixed_amt));
                     break;
             }
@@ -219,7 +215,7 @@ public class AddEmpPayrollFragment extends Fragment {
     private void updateVehicleIcon(int iVehicleType, int position) {
         iVehicleImage = position;
         this.iVehicleType = iVehicleType;
-        if (iVehicleType == Utility.TAG_VEHICLE_CAR) {
+        if (iVehicleType == Constants.TAG_VEHICLE_CAR) {
             switch (position) {
                 case 0:
                     ivVehicleImg.setImageResource(R.drawable.ic_car_audi);
@@ -261,7 +257,7 @@ public class AddEmpPayrollFragment extends Fragment {
                     ivVehicleImg.setImageResource(R.drawable.ic_car_audi);
                     break;
             }
-        } else if (iVehicleType == Utility.TAG_VEHICLE_MOTORBIKE) {
+        } else if (iVehicleType == Constants.TAG_VEHICLE_MOTORBIKE) {
             switch (position) {
                 case 0:
                     ivVehicleImg.setImageResource(R.drawable.ic_bike_honda);
@@ -282,11 +278,11 @@ public class AddEmpPayrollFragment extends Fragment {
             int selectedId = rdVehicleGroup.getCheckedRadioButtonId();
             switch (selectedId) {
                 case R.id.rbCar:
-                    iVehicleType = Utility.TAG_VEHICLE_CAR;
+                    iVehicleType = Constants.TAG_VEHICLE_CAR;
                     loadCarBrands();
                     break;
                 case R.id.rbMotorCycle:
-                    iVehicleType = Utility.TAG_VEHICLE_MOTORBIKE;
+                    iVehicleType = Constants.TAG_VEHICLE_MOTORBIKE;
                     loadMotorBikeBrands();
                     break;
             }
@@ -314,9 +310,9 @@ public class AddEmpPayrollFragment extends Fragment {
         }
 
         Log.e("Emp Type", "1. Part Time 2. Intern 3. Full Time " + iEmployeeType);
-        //Store EMPLOYEE TYPE i.e. iEmployeeType
+
         switch (iEmployeeType) {
-            case Utility.EMP_TYPE_PART_TIME:
+            case Constants.EMP_TYPE_PART_TIME:
                 strEmpHourRate = etEmpHourRate.getText().toString();
                 strEmpWorkedHours = etEmpWorkedHours.getText().toString();
                 strExtraAmt = etExtraAmt.getText().toString();
@@ -326,12 +322,12 @@ public class AddEmpPayrollFragment extends Fragment {
                 Log.e("Extra Amt.", strExtraAmt);
                 break;
 
-            case Utility.EMP_TYPE_INTERN:
+            case Constants.EMP_TYPE_INTERN:
                 strSchoolName = etEmpISchoolName.getText().toString().trim();
                 Log.e("School Name", strSchoolName);
                 break;
 
-            case Utility.EMP_TYPE_FULL_TIME:
+            case Constants.EMP_TYPE_FULL_TIME:
                 strEmpFTimeSalary = etEmpFTimeSalary.getText().toString().trim();
                 strEmpFTimeBonus = etEmpFTimeBonus.getText().toString().trim();
                 Log.e("Salary", strEmpFTimeSalary);
@@ -362,23 +358,23 @@ public class AddEmpPayrollFragment extends Fragment {
 
     private void savePayrollInDB() {
         final EmployeePayroll employeePayrollInstance = new EmployeePayroll();
-        VehicleInfo vehicleInfo = new VehicleInfo();
+        Vehicle vehicle = new Vehicle();
         Employee employee = new Employee();
 
         try {
-            vehicleInfo.vehicleType = iVehicleType;
-            vehicleInfo.vehicleImage = iVehicleImage;
-            vehicleInfo.vehicleName = strVehicleName;
-            vehicleInfo.vehicleModel = strVehicleModel;
-            vehicleInfo.vehiclePlateNo = strVehiclePlateNo;
-            final Dao<VehicleInfo, Integer> vehicleInfos = getHelper().getVehicleInfoDao();
-            vehicleInfos.create(vehicleInfo);
+            vehicle.vehicleType = iVehicleType;
+            vehicle.vehicleImage = iVehicleImage;
+            vehicle.vehicleName = strVehicleName;
+            vehicle.vehicleModel = strVehicleModel;
+            vehicle.vehiclePlateNo = strVehiclePlateNo;
+            final Dao<Vehicle, Integer> vehicleInfos = getHelper().getVehicleInfoDao();
+            vehicleInfos.create(vehicle);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         switch (iEmployeeType) {
-            case Utility.EMP_TYPE_PART_TIME:
+            case Constants.EMP_TYPE_PART_TIME:
                 strEmpHourRate = etEmpHourRate.getText().toString();
                 strEmpWorkedHours = etEmpWorkedHours.getText().toString();
                 strExtraAmt = etExtraAmt.getText().toString();
@@ -388,12 +384,12 @@ public class AddEmpPayrollFragment extends Fragment {
                 Log.e("Extra Amt.", strExtraAmt);
                 break;
 
-            case Utility.EMP_TYPE_INTERN:
+            case Constants.EMP_TYPE_INTERN:
                 strSchoolName = etEmpISchoolName.getText().toString().trim();
                 Log.e("School Name", strSchoolName);
                 break;
 
-            case Utility.EMP_TYPE_FULL_TIME:
+            case Constants.EMP_TYPE_FULL_TIME:
                 strEmpFTimeSalary = etEmpFTimeSalary.getText().toString().trim();
                 strEmpFTimeBonus = etEmpFTimeBonus.getText().toString().trim();
                 Log.e("Salary", strEmpFTimeSalary);
@@ -417,12 +413,11 @@ public class AddEmpPayrollFragment extends Fragment {
             e.printStackTrace();
         }
 
-
         employeePayrollInstance.empName = strEmpName;
         employeePayrollInstance.empDOB = strEmpDOB;
         employeePayrollInstance.havingVehicle = isVehicleAvail;
         if (isVehicleAvail) {
-            employeePayrollInstance.vehicleInfo = vehicleInfo;
+            employeePayrollInstance.vehicle = vehicle;
         }
         employeePayrollInstance.employee = employee;
 
@@ -450,7 +445,7 @@ public class AddEmpPayrollFragment extends Fragment {
         llVehicleInfo = mRoot.findViewById(R.id.llVehicleInfo);
         rdVehicleGroup = mRoot.findViewById(R.id.rdVehicleGroup);
         spVehicleName = mRoot.findViewById(R.id.spVehicleName);
-
+        //etVehicleName = mRoot.findViewById(R.id.etVehicleName);
         etVehicleModel = mRoot.findViewById(R.id.etVehicleModel);
         etVehiclePlateNo = mRoot.findViewById(R.id.etVehiclePlateNo);
         ivVehicleImg = mRoot.findViewById(R.id.ivVehicleImg);

@@ -3,10 +3,8 @@ package com.sample.empsytems.ui.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import com.j256.ormlite.dao.Dao;
 import com.sample.empsytems.R;
 import com.sample.empsytems.database.DatabaseHelper;
 import com.sample.empsytems.models.EmployeePayroll;
-import com.sample.empsytems.models.VehicleInfo;
 import com.sample.empsytems.ui.adapters.AllPayrollListAdapter;
 
 import java.sql.SQLException;
@@ -89,7 +86,6 @@ public class ListPayrollFragment extends Fragment {
         } else {
             llNoData.setVisibility(View.GONE);
             rvAllPayrollList.setVisibility(View.VISIBLE);
-
             rvAllPayrollList = mRoot.findViewById(R.id.rvAllPayrollList);
             Collections.reverse(mAllPayrollList);
             AllPayrollListAdapter mPayrollListAdapter = new AllPayrollListAdapter(getActivity(), mAllPayrollList);

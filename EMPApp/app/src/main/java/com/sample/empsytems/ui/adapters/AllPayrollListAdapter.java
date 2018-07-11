@@ -14,7 +14,7 @@ import com.sample.empsytems.R;
 import com.sample.empsytems.models.EmployeePayroll;
 import com.sample.empsytems.ui.activites.ViewEmpDetailActivity;
 import com.sample.empsytems.utils.CommonMethods;
-import com.sample.empsytems.utils.Utility;
+import com.sample.empsytems.utils.Constants;
 
 import java.util.List;
 
@@ -72,8 +72,8 @@ public class AllPayrollListAdapter extends RecyclerView.Adapter<AllPayrollListAd
 
         if (mEmpPayroll.havingVehicle) {
             holder.ivVehicleImg.setImageResource(CommonMethods.getVehicleIconByPosition(
-                    mEmpPayroll.getVehicleInfo().vehicleType,
-                    mEmpPayroll.getVehicleInfo().getVehicleImage()
+                    mEmpPayroll.getVehicle().vehicleType,
+                    mEmpPayroll.getVehicle().getVehicleImage()
             ));
             holder.tvHasVehicle.setText(context.getResources().getString(R.string.text_label_yes));
         } else {
@@ -83,15 +83,15 @@ public class AllPayrollListAdapter extends RecyclerView.Adapter<AllPayrollListAd
 
         int empCategory = mEmpPayroll.getEmployee().employeeType;
         switch (empCategory) {
-            case Utility.EMP_TYPE_PART_TIME:
+            case Constants.EMP_TYPE_PART_TIME:
                 holder.tvEmpType.setText(context.getResources().getString(R.string.rb_label_part_time));
                 break;
 
-            case Utility.EMP_TYPE_INTERN:
+            case Constants.EMP_TYPE_INTERN:
                 holder.tvEmpType.setText(context.getResources().getString(R.string.rb_label_intern));
                 break;
 
-            case Utility.EMP_TYPE_FULL_TIME:
+            case Constants.EMP_TYPE_FULL_TIME:
                 holder.tvEmpType.setText(context.getResources().getString(R.string.rb_label_full_time));
                 break;
         }

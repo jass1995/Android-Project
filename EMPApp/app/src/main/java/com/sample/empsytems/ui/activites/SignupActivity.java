@@ -11,8 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 import com.sample.empsytems.R;
+import com.sample.empsytems.database.DatabaseHelper;
+import com.sample.empsytems.models.signup.User;
+import com.sample.empsytems.ui.interfaces.onAlertCallbackListener;
 import com.sample.empsytems.utils.CommonMethods;
+import com.sample.empsytems.utils.PrefsManager;
+
+import java.sql.SQLException;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -20,17 +28,16 @@ public class SignupActivity extends AppCompatActivity {
     Button btSignup;
     private EditText etUsername, etEmail, etPassword, etCPassword;
 
+    private DatabaseHelper databaseHelper = null;
+
     String strErrorMessae = "";
     String strUsername, strEmail, strPassword, strCPassword;
-
-    private void registerUserInDB() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         init();
-
         btSignup.setOnClickListener(mSignuListener);
         etPassword.setOnEditorActionListener(mDoneActionListener);
     }
@@ -46,6 +53,23 @@ public class SignupActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (databaseHelper != null) {
+            OpenHelperManager.releaseHelper();
+            databaseHelper = null;
+        }
+    }
+
+    private DatabaseHelper getHelper() {
+        if (databaseHelper == null) {
+            databaseHelper = OpenHelperManager.getHelper(SignupActivity.this
+                    , DatabaseHelper.class);
+        }
+        return databaseHelper;
     }
 
     private View.OnClickListener mSignuListener = new View.OnClickListener() {
@@ -72,6 +96,29 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             CommonMethods.showAlertMessage(SignupActivity.this
                     , strErrorMessae);
+        }
+    }
+
+    private void registerUserInDB() {
+        try {
+            User userInstance = new User(strUsername,
+                    strEmail,
+                    strPassword);
+            final Dao<User, Integer> userDao = getHelper().getUserDao();
+            int resultCode = userDao.create(userInstance);
+
+            if(resultCode == 1) {
+               CommonMethods.showAlertMessageCallback(SignupActivity.this,
+                       getString(R.string.alert_register_success),
+                       new onAlertCallbackListener() {
+                           @Override
+                           public void onClickOkay() {
+                               onBackPressed();
+                           }
+                       });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

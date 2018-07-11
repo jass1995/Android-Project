@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_weight="60"
-                android:text="gjuneja74@gmail.com"
+                android:text="Group 4 MADT"
                 android:textSize="14sp" />
 
         </LinearLayout>

@@ -11,6 +11,7 @@ public class PrefsManager {
 
     public static final String KEY_EMAIL = "login_email";
     public static final String KEY_USERNAME = "login_username";
+    public static final String KEY_PASSWORD = "login_password";
 
     String mPrefsName = "EmpPayrollSystem";
 
